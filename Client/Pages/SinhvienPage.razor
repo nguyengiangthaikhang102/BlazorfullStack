@@ -1,0 +1,53 @@
+﻿@page "/sinhvienpage"
+@inject ISinhVienService SinhVienService
+@inject NavigationManager NavigationManager
+<PageTitle>Sinh VienTT</PageTitle>
+
+<h3>SinhvienPage</h3>
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Tinh</th>
+				<th>HoTen</th>
+				<th>NgaySinh</th>
+				<th>ThangSinh</th>
+				<th>NamSinh</th>
+				<th>IDNumber</th>
+				<th>Truong</th>
+				<th>SoDienThoai</th>
+				<th>Status</th>
+			</tr>
+		</thead>
+		<tbody>
+			@foreach (var sinhvien in SinhVienService.SinhVienTTss)
+			{
+				<tr>
+					<td>@sinhvien.Tinh</td>
+					<td>@sinhvien.HoTen</td>
+					<td>@sinhvien.NgaySinh</td>
+					<td>@sinhvien.ThangSinh</td>
+					<td>@sinhvien.NamSinh</td>
+					<td>@sinhvien.IDNumber</td>
+					<td>@sinhvien.Truong</td>
+					<td>@sinhvien.SoDienThoai</td>
+					<td>@sinhvien.Status.Name</td>
+					<td>
+						<button class="btn btn-primary" @onclick="(() =>Showsinhvien(sinhvien.Id))"><i class ="oi oi-pencil"></i></button>
+					</td>
+
+
+				</tr>
+			}
+		</tbody>
+	</table>
+
+@code {
+	protected override async Task OnInitializedAsync()
+	{
+		await SinhVienService.GetSinhVienTTss();	
+	}
+	void Showsinhvien (int id)
+	{
+		NavigationManager.NavigateTo($"sinhvien/{id}");
+	}
+}

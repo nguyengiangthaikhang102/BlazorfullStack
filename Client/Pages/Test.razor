@@ -1,0 +1,20 @@
+﻿@page "/sinhvien"
+@page "/sinhvien/{id:int}"
+@inject ISinhVienService SinhVienService
+@if (Id == null)
+{
+	<PageTitle>Create a new Sinh Vien</PageTitle>
+	<h3>Creata a new Sinh Vien</h3>
+}
+else
+{
+	<PageTitle>Edit</PageTitle>
+	<h3>Edit @sinhvien.HoTen</h3>
+}
+
+@code {
+	[Parameter]
+	public int? Id { get; set; }
+	SinhVienTT sinhvien = new SinhVienTT { Status = new Status() };
+
+}
